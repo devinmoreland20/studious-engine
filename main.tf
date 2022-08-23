@@ -24,8 +24,8 @@ module "networking" {
   instance_tenancy = var.instance_tenancy
   access_ip        = var.access_ip
   private_sn_count = var.private_cidrs
-  public_sn_count  = var.public_sn_count
-  public_cidrs     = var.public_cidrs
+  public_sn_count  = var.public_sn_count[count.index]
+  public_cidrs     = var.public_cidrs[count.index]
   private_cidrs    = var.private_cidrs
 
 }
