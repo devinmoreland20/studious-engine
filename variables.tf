@@ -87,6 +87,5 @@ variable "instance_type" {
   default = "t2.micro"
 }
 variable "user_data" {
-  type    = string
   default = file("./userdata.tpl")
 }
