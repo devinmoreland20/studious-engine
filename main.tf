@@ -3,16 +3,16 @@
 module "loadbalancing" {
   source                 = "./modules/loadbalancing"
   public_subnets         = module.networking.aws_public_subnet
-  tg_port                = 80
-  tg_protocol            = "HTTP"
+  tg_port                = var.tg_port
+  tg_protocol            = var.tg_protocol
   vpc_id                 = module.networking.vpc_id
-  listener_port          = 80
-  listener_protocol      = "HTTP"
+  listener_port          = var.listener_port
+  listener_protocol      = var.listener_port
   security_groups        = module.security.public_ALB
-  lb_healthy_threshold   = 2
-  lb_unhealthy_threshold = 2
-  lb_timeout             = 20
-  lb_interval            = 30
+  lb_healthy_threshold   = var.lb_healthy_threshold
+  lb_unhealthy_threshold = var.lb_unhealthy_threshold
+  lb_timeout             = var.lb_timeout
+  lb_interval            = var.lb_interval
 }
 
 
@@ -20,13 +20,13 @@ module "loadbalancing" {
 
 module "networking" {
   source           = "./modules/networking"
-  vpc_cidr         = "10.0.0.0/16"
-  instance_tenancy = "default"
-  access_ip        = "0.0.0.0/0"
-  private_sn_count = 3
-  public_sn_count  = 3
-  public_cidrs     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  private_cidrs    = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  vpc_cidr         = var.vpc_cidr
+  instance_tenancy = var.instance_tenancy
+  access_ip        = var.access_ip
+  private_sn_count = var.private_cidrs
+  public_sn_count  = var.public_sn_count
+  public_cidrs     = var.public_cidrs
+  private_cidrs    = var.private_cidrs
 
 }
 module "autoscalling" {
@@ -37,11 +37,11 @@ module "autoscalling" {
   public_sg  = module.security.public_http_sg
 
   bastion_sg    = module.security.bastion_sg
-  instance_type = "t2.micro"
-  user_data     = file("./userdata.tpl")
+  instance_type = var.instance_type
+  user_data     = var.user_data
 }
 module "security" {
   source    = "./modules/security"
   vpc_id    = module.networking.vpc_id
-  access_ip = "0.0.0.0/0"
+  access_ip = var.access_ip
 }
