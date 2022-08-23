@@ -11,7 +11,7 @@ variable "AWS_DEFAULT_REGION" {
 }
 
 variable "tg_port" {
-  type    = string
+  type    = number
   default = 80
 }
 variable "tg_protocol" {
@@ -20,7 +20,7 @@ variable "tg_protocol" {
 }
 
 variable "listener_port" {
-  type    = string
+  type    = number
   default = 80
 }
 variable "listener_protocol" {
@@ -29,20 +29,20 @@ variable "listener_protocol" {
 }
 
 variable "lb_healthy_threshold" {
-  type    = string
+  type    = number
   default = 2
 }
 variable "lb_unhealthy_threshold" {
-  type    = string
+  type    = number
   default = 2
 }
 variable "lb_timeout" {
-  type    = string
+  type    = number
   default = 20
 
 }
 variable "lb_interval" {
-  type    = string
+  type    = number
   default = 30
 }
 
@@ -59,11 +59,11 @@ variable "access_ip" {
   default = "0.0.0.0/0"
 }
 variable "private_sn_count" {
-  type    = string
+  type    = number
   default = 3
 }
 variable "public_sn_count" {
-  type    = string
+  type    = number
   default = 3
 }
 variable "public_cidrs" {
