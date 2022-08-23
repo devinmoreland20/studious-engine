@@ -23,8 +23,8 @@ module "networking" {
   vpc_cidr         = var.vpc_cidr
   instance_tenancy = var.instance_tenancy
   access_ip        = var.access_ip
-  private_sn_count = [var.private_cidrs]
-  public_sn_count  = [var.public_sn_count]
+  private_sn_count = 3
+  public_sn_count  = 3
   public_cidrs     = var.public_cidrs
   private_cidrs    = var.private_cidrs
 
