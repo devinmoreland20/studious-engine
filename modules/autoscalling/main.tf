@@ -21,7 +21,7 @@ resource "aws_autoscaling_group" "webserver" {
   vpc_zone_identifier       = var.private_sn
   target_group_arns         = [var.public_alb]
   tag {
-    name = "webserver ${count.index}"
+    name = join("-", [[count.index], "redhat-box"])
   }
 }
 
@@ -43,6 +43,6 @@ resource "aws_autoscaling_group" "bastion" {
   launch_configuration      = aws_launch_configuration.bastion_config.name
   vpc_zone_identifier       = var.public_sn
   tag {
-    name = "Bastion ${count.index}"
+    name = "Bastion"
   }
 }
