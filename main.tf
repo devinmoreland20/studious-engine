@@ -38,7 +38,7 @@ module "autoscalling" {
 
   bastion_sg    = module.security.bastion_sg
   instance_type = var.instance_type
-  user_data     = var.user_data
+  user_data     = file("./userdata.tpl")
 }
 module "security" {
   source    = "./modules/security"

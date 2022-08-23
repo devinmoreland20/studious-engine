@@ -86,6 +86,6 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
-variable "user_data" {
-  default = file("./userdata.tpl")
-}
+# variable "user_data" {
+#   default = file("./userdata.tpl")
+# }
