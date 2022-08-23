@@ -6,6 +6,7 @@ resource "aws_launch_configuration" "web_config" {
   instance_type   = var.instance_type
   security_groups = [var.public_sg]
   user_data       = var.user_data
+
 }
 
 resource "aws_autoscaling_group" "webserver" {
@@ -19,6 +20,9 @@ resource "aws_autoscaling_group" "webserver" {
   launch_configuration      = aws_launch_configuration.web_config.name
   vpc_zone_identifier       = var.private_sn
   target_group_arns         = [var.public_alb]
+  tag {
+    name = "webserver ${count.index}"
+  }
 }
 
 resource "aws_launch_configuration" "bastion_config" {
@@ -38,4 +42,7 @@ resource "aws_autoscaling_group" "bastion" {
   force_delete              = true
   launch_configuration      = aws_launch_configuration.bastion_config.name
   vpc_zone_identifier       = var.public_sn
+  tag {
+    name = "Bastion ${count.index}"
+  }
 }
