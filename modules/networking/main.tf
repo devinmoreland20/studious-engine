@@ -90,7 +90,7 @@ resource "aws_nat_gateway" "nat_gateway" {
   subnet_id     = aws_subnet.public_project_subnet[0].id
 
   tags = {
-    Name = "gw NAT"
+    Name = "gw NAT2"
   }
 
   depends_on = [aws_internet_gateway.project_gw]
