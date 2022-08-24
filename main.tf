@@ -44,7 +44,7 @@ module "autoscalling" {
   web_server_ami                      = var.web_server_ami
   ASG_webserver_name                  = var.ASG_webserver_name
   webserver_max_size                  = var.webserver_max_size
-  webserver_min_size                  = webserver_min_size
+  webserver_min_size                  = var.webserver_min_size
   webserver_health_check_grace_period = var.webserver_health_check_grace_period
   webserver_health_check_type         = var.webserver_health_check_type
   webserver_desired_capacity          = var.webserver_desired_capacity
