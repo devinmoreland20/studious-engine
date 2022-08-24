@@ -39,31 +39,32 @@ module "networking" {
   elastic_ip_vpc              = var.elastic_ip_vpc
 }
 module "autoscalling" {
-  source                            = "./modules/autoscalling"
-  aws_launch_configuration_name     = var.aws_launch_configuration_name
-  web_server_ami                    = var.web_server_ami
-  ASG_webserver_name                = var.ASG_webserver_name
-  webserver_max_size                = var.webserver_max_size
-  webserver_min_size                = webserver_min_size
-  webserver_health_check_type       = var.webserver_health_check_type
-  webserver_desired_capacity        = var.webserver_desired_capacity
-  webserver_force_delete            = var.webserver_force_delete
-  public_sn                         = module.networking.aws_public_subnet
-  private_sn                        = module.networking.aws_private_subnet
-  public_alb                        = module.loadbalancing.lb_target_group_arn
-  public_sg                         = module.security.public_http_sg
-  bastion_launch_configuration_name = var.bastion_launch_configuration_name
-  bastion_server_ami                = var.bastion_server_ami
-  bastion_webserver_name            = var.bastion_webserver_name
-  bastion_max_size                  = var.bastion_max_size
-  bastion_min_size                  = var.bastion_min_size
-  bastion_health_check_grace_period = var.bastion_health_check_grace_period
-  bastion_health_check_type         = var.bastion_health_check_type
-  bastion_desired_capacity          = var.bastion_desired_capacity
-  bastion_force_delete              = var.bastion_force_delete
-  bastion_sg                        = module.security.bastion_sg
-  instance_type                     = var.instance_type
-  user_data                         = file("./userdata.tpl")
+  source                              = "./modules/autoscalling"
+  aws_launch_configuration_name       = var.aws_launch_configuration_name
+  web_server_ami                      = var.web_server_ami
+  ASG_webserver_name                  = var.ASG_webserver_name
+  webserver_max_size                  = var.webserver_max_size
+  webserver_min_size                  = webserver_min_size
+  webserver_health_check_grace_period = var.webserver_health_check_grace_period
+  webserver_health_check_type         = var.webserver_health_check_type
+  webserver_desired_capacity          = var.webserver_desired_capacity
+  webserver_force_delete              = var.webserver_force_delete
+  public_sn                           = module.networking.aws_public_subnet
+  private_sn                          = module.networking.aws_private_subnet
+  public_alb                          = module.loadbalancing.lb_target_group_arn
+  public_sg                           = module.security.public_http_sg
+  bastion_launch_configuration_name   = var.bastion_launch_configuration_name
+  bastion_server_ami                  = var.bastion_server_ami
+  bastion_webserver_name              = var.bastion_webserver_name
+  bastion_max_size                    = var.bastion_max_size
+  bastion_min_size                    = var.bastion_min_size
+  bastion_health_check_grace_period   = var.bastion_health_check_grace_period
+  bastion_health_check_type           = var.bastion_health_check_type
+  bastion_desired_capacity            = var.bastion_desired_capacity
+  bastion_force_delete                = var.bastion_force_delete
+  bastion_sg                          = module.security.bastion_sg
+  instance_type                       = var.instance_type
+  user_data                           = file("./userdata.tpl")
 }
 module "security" {
   source    = "./modules/security"
