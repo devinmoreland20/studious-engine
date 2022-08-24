@@ -22,14 +22,6 @@ variable "instance_type" {
 variable "user_data" {
 
 }
-variable "" {}
-variable "" {}
-variable "" {}
-variable "" {}
-variable "" {}
-variable "" {}
-variable "" {}
-variable "" {}
 variable "aws_launch_configuration_name" {
 
 }
