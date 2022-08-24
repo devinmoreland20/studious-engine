@@ -21,9 +21,6 @@ module "loadbalancing" {
   lb_tg_name                 = var.lb_tg_name
 }
 
-
-
-
 module "networking" {
   source                      = "./modules/networking"
   vpc_cidr                    = var.vpc_cidr
@@ -66,6 +63,7 @@ module "autoscalling" {
   instance_type                       = var.instance_type
   user_data                           = file("./userdata.tpl")
 }
+
 module "security" {
   source    = "./modules/security"
   vpc_id    = module.networking.vpc_id
