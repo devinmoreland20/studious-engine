@@ -1,7 +1,7 @@
 # -------  modules/networking/main.tf
 resource "aws_vpc" "project" {
   cidr_block       = var.vpc_cidr #our cidr is now a variable. 
-  instance_tenancy = "default"
+  instance_tenancy = var.vpc_instance_tenancy
   tags = {
     Name = "Project"
   }
@@ -46,7 +46,7 @@ resource "aws_default_route_table" "internal_project_default" {
   default_route_table_id = aws_vpc.project.default_route_table_id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.default_rt_route_cidr_block
     gateway_id = aws_nat_gateway.nat_gateway.id
   }
   tags = {
@@ -59,7 +59,7 @@ resource "aws_route_table" "public_project_route_table" {
   vpc_id = aws_vpc.project.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.public_route_cidr_block
     gateway_id = aws_internet_gateway.project_gw.id
   }
 
@@ -81,7 +81,7 @@ resource "aws_route_table_association" "default" {
 }
 
 resource "aws_eip" "elastic_ip" {
-  vpc        = true
+  vpc        = var.elastic_ip_vpc
   depends_on = [aws_internet_gateway.project_gw]
 }
 

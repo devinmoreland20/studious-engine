@@ -1,4 +1,0 @@
-# -------- modules/compute/outputs.tf
-
-
-

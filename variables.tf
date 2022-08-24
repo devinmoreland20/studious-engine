@@ -78,6 +78,134 @@ variable "instance_type" {
   type    = string
   default = "t2.micro"
 }
-# variable "user_data" {
-#   default = file("./userdata.tpl")
-# }
+
+variable "aws_launch_configuration_name" {
+  type    = string
+  default = "web_config"
+}
+
+variable "web_server_ami" {
+  type    = string
+  default = "ami-051dfed8f67f095f5"
+}
+
+variable "ASG_webserver_name" {
+  type    = string
+  default = "webserver-ASG"
+}
+
+variable "webserver_max_size" {
+  type    = number
+  default = 5
+}
+
+variable "webserver_min_size" {
+  type    = number
+  default = 2
+}
+variable "webserver_health_check_grace_period" {
+  type    = number
+  default = 300
+}
+
+variable "webserver_health_check_type" {
+  type    = string
+  default = "ELB"
+}
+variable "webserver_desired_capacity" {
+  type    = number
+  default = 2
+}
+variable "webserver_force_delete" {
+  type    = bool
+  default = true
+}
+
+
+
+variable "bastion_launch_configuration_name" {
+  type    = string
+  default = "bastion_config"
+}
+
+variable "bastion_server_ami" {
+  type    = string
+  default = "ami-051dfed8f67f095f5"
+}
+
+variable "bastion_webserver_name" {
+  type    = string
+  default = "webserver-ASG"
+}
+
+variable "bastion_max_size" {
+  type    = number
+  default = 3
+}
+
+variable "bastion_min_size" {
+  type    = number
+  default = 1
+}
+variable "bastion_health_check_grace_period" {
+  type    = number
+  default = 300
+}
+
+variable "bastion_health_check_type" {
+  type    = string
+  default = "ELB"
+}
+variable "bastion_desired_capacity" {
+  type    = number
+  default = 1
+}
+variable "bastion_force_delete" {
+  type    = bool
+  default = true
+}
+
+
+variable "webserver_lb_name" {
+  type    = string
+  default = "webserver-lb"
+}
+
+variable "load_balancer_type" {
+  type    = string
+  default = "application"
+}
+variable "internal_lb" {
+  type    = bool
+  default = false
+}
+variable "lb_listener_action_type" {
+  type    = string
+  default = "forward"
+}
+variable "lb_tg_name" {
+  type    = string
+  default = "webserver-lb-tg"
+}
+variable "enable_deletion_protection" {
+  type    = bool
+  default = false
+}
+
+variable "vpc_instance_tenancy" {
+  type    = string
+  default = "default"
+}
+
+variable "default_rt_route_cidr_block" {
+  type    = string
+  default = "0.0.0.0/0"
+}
+variable "public_route_cidr_block" {
+  type    = string
+  default = "0.0.0.0/0"
+}
+variable "elastic_ip_vpc" {
+  type    = bool
+  default = true
+}

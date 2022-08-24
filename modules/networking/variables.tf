@@ -10,8 +10,22 @@ variable "access_ip" {}
 variable "private_sn_count" {}
 variable "public_sn_count" {}
 variable "public_cidrs" {
-  type = list(any)
+
 }
 variable "private_cidrs" {
-  type = list(any)
+
+}
+
+variable "vpc_instance_tenancy" {
+
+}
+
+variable "default_rt_route_cidr_block" {
+
+}
+variable "public_route_cidr_block" {
+
+}
+variable "elastic_ip_vpc" {
+
 }

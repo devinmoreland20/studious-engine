@@ -12,4 +12,9 @@ variable "lb_unhealthy_threshold" {}
 variable "lb_timeout" {}
 variable "listener_port" {}
 variable "lb_interval" {}
-
+variable "webserver_lb_name" {}
+variable "load_balancer_type" {}
+variable "internal_lb" {}
+variable "lb_listener_action_type" {}
+variable "lb_tg_name" {}
+variable "enable_deletion_protection" {}
